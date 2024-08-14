@@ -26,6 +26,11 @@ def get_latest_tweet(username):
     url = f"https://api.twitter.com/2/tweets/search/recent?query=from:{username}"
     headers = create_headers(bearer_token)
     response = requests.get(url, headers=headers)
+    
+    # 打印调试信息
+    print(f"Status Code: {response.status_code}")
+    print(f"Response: {response.text}")
+    
     if response.status_code != 200:
         raise Exception(f"Request returned an error: {response.status_code} {response.text}")
     return response.json()
@@ -52,6 +57,9 @@ def check_new_tweets():
                 tweet_id = tweet['id']
                 tweet_text = tweet['text']
                 created_at = tweet['created_at']
+
+                # 打印调试信息
+                print(f"Checking tweet ID: {tweet_id} created at {created_at}")
 
                 if created_at > last_checked_time:
                     message = f"新推文來自 {row['kol_name']}:\n原文: {tweet_text}"
