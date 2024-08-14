@@ -11,10 +11,12 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # 使用 v3 版本，支持 Node.js 16+
+      uses: actions/checkout@v3  # 使用 v3 版本
 
     - name: Set up Python
-      uses: actions/setup-python@v4  # 使用 v4 版本，支持 Node.js 16+
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'  # 指定 Python 版本
 
     - name: Install dependencies
       run: |
